@@ -1,7 +1,14 @@
 const knex = require("../database/knex")
 
 class TagsController {
-  async index()
+  async index(request, response) {
+    const { user_id } = request.params;
+
+    const tags = await knex("movie_Tags")
+    .where({ user_id })
+
+    return response.json(tags)
+  }
 
 
 }
